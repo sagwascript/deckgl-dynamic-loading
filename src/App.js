@@ -1,26 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GeoJsonLayerMap from "./GeoJsonLayerMap";
+import MarkerMap from "./MarkerMap";
+import usRegion from "./us_region_geojson.json";
+
+const TOKEN =
+  "pk.eyJ1Ijoic2Fnd2FzY3JpcHQiLCJhIjoiY2syZGVpeHNoMGY2MTNkbHFiMTZiejZyOCJ9.6EuAUuNNqWnaIINOwkLwBw";
+const mapStyle = "mapbox://styles/mapbox/satellite-streets-v10";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <GeoJsonLayerMap token={TOKEN} mapStyle={mapStyle} data={usRegion} />;
+  // return <MarkerMap token={TOKEN} style={mapStyle} />;
 }
 
 export default App;
