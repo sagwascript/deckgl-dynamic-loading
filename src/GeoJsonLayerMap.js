@@ -6,7 +6,7 @@ import MapInfo from "./MapInfo";
 import LocationIcon from "./location.png";
 
 const ICON_MAPPING = {
-  marker: { x: 0, y: 0, width: 32, height: 32 }
+  marker: { x: 0, y: 0, width: 32, height: 32, mask: false }
 };
 
 function GeoJsonLayerMap(props) {
@@ -48,6 +48,7 @@ function GeoJsonLayerMap(props) {
       return new IconLayer({
         id: "icon-layer",
         data: usRegionPoint(props.data),
+        pickable: true,
         iconAtlas: LocationIcon,
         iconMapping: ICON_MAPPING,
         getIcon: d => "marker",
@@ -55,8 +56,8 @@ function GeoJsonLayerMap(props) {
         getPosition: d => d.coordinates,
         getSize: d => 5,
         onClick: ({ object, x, y }) => {
-          const tooltip = `${object.name}`;
-          console.log(tooltip);
+          setLocationData(object.properties);
+          setDisplayMapInfo(true);
         }
       });
   };
